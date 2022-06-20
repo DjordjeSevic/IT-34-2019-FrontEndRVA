@@ -1,0 +1,52 @@
+<div class="container">
+    <h3 mat-dialog-title *ngIf="flag == 1">Dodavanje studenta</h3>
+    <h3 mat-dialog-title *ngIf="flag == 2">Modifikacija studenta {{data.id}}</h3>
+    <h3 mat-dialog-title *ngIf="flag == 3">Brisanje studenta: {{data.id}}</h3>
+
+    <form class="mat-dialog-content" #formControl="ngForm">
+        <div class="form">
+            <mat-form-field *ngIf="flag==1">
+                <mat-select placeholder="Status" name="status" [(ngModel)] = "data.status" required>
+                    <mat-option *ngFor="let status of statusi" [value]="status">
+                        {{status.naziv}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field *ngIf="flag==2 || flag==3">
+                <mat-select [compareWith]="compare"  placeholder="Status" name="status" [(ngModel)] = "data.status" required>
+                    <mat-option *ngFor="let status of statusi" [value]="status">
+                        {{status.naziv}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form">
+            <mat-form-field>
+                <input matInput placeholder="Ime" [(ngModel)] = "data.ime" name="ime" [disabled]= "flag == 3" required>
+            </mat-form-field>     
+         </div>
+         <div class="form">
+             <mat-form-field>
+                 <input matInput placeholder="Prezime" [(ngModel)] = "data.prezime" name="prezime" [disabled]= "flag == 3" required>
+             </mat-form-field>     
+         </div>
+
+
+        <div class="form">
+            <mat-form-field>
+                <input matInput placeholder="Broj indeksa" name="brojIndeksa" [(ngModel)] = "data.brojIndeksa" [disabled] = "flag == 3"  required/>
+            </mat-form-field>
+        </div>
+
+    </form>
+
+    <div class="mat-dialog-actions">
+        <button mat-button *ngIf="flag==1" [disabled]="!formControl.valid" (click)="add()" mat-dialog-close="1" type="submit" >Sacuvaj</button>
+        <button mat-button *ngIf="flag==2" [disabled]="!formControl.valid" (click)="update()" mat-dialog-close="1" type="submit">Azuriraj</button>
+        <button mat-button *ngIf="flag==3" (click)="delete()" mat-dialog-close="1">Obrisi</button>
+        <button mat-button (click)="cancel()">Ponisti</button>
+    </div>
+</div>
