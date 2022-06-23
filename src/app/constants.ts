@@ -8,4 +8,4 @@ export const STATUS_URI = "https://backend-it34-2019.herokuapp.com/status";
 export const FAKULTET_URI = "https://backend-it34-2019.herokuapp.com/fakultet";
 export const DEPARTMAN_URI = "https://backend-it34-2019.herokuapp.com/departman";
 export const STUDENT_URI = "https://backend-it34-2019.herokuapp.com/student";
-export const STUDENT_FOR_DEPARTMAN_URI = "https://backend-it34-2019.herokuapp.com/forDepartman";
+export const STUDENT_FOR_DEPARTMAN_URI = "https://backend-it34-2019.herokuapp.com/student/forDepartman";
